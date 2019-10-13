@@ -1,0 +1,58 @@
+##
+## Openssl CNF for CSR
+##
+
+# SHA-1 is deprecated, so use SHA-2 instead.
+default_md        = sha256
+
+default_days      = 375
+preserve          = no
+
+[ req ]
+default_bits		= 2048
+default_md		    = sha256
+distinguished_name	= req_distinguished_name
+string_mask         = utf8only
+attributes		    = req_attributes
+# x509_extensions     = v3_ca
+req_extensions      = v3_req
+
+
+[ req_distinguished_name ]
+# See <https://en.wikipedia.org/wiki/Certificate_signing_request>.
+countryName                     = Country Name (2 letter code)
+stateOrProvinceName             = State or Province Name
+localityName                    = Locality Name
+0.organizationName              = Organization Name
+organizationalUnitName          = Organizational Unit Name
+commonName                      = Common Name
+commonName_max			        = 64
+emailAddress                    = Email Address
+emailAddress_max		        = 64
+
+
+# Optionally, specify some defaults.
+countryName_default             = CA
+stateOrProvinceName_default     = British Columbia
+localityName_default            = Vancouver
+0.organizationName_default      = Hyperion Technology, Inc.
+organizationalUnitName_default  = DevOps
+emailAddress_default		    = hyperionex@protonmail.com
+
+[ req_attributes ]
+challengePassword		    = A challenge password
+challengePassword_min		= 4
+challengePassword_max		= 20
+
+# [ v3_ca ]
+# subjectKeyIdentifier=hash
+# authorityKeyIdentifier=keyid:always,issuer
+# basicConstraints = CA:false
+
+[ v3_req ]
+subjectAltName = @alt_names
+
+[ alt_names ]
+DNS.1   = tiller.hyperionex.io
+DNS.2   = localhost
+IP.1    = 127.0.0.1

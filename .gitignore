@@ -1,0 +1,12 @@
+*.pem
+*.crt
+*.key
+*.tls
+*.csr
+
+*.tmp
+*~
+
+*.bak
+*.old
+
