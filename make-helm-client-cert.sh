@@ -17,7 +17,13 @@ DAYS=375
 DATE=$(date -u '+%Y-%m-%dT%H:%M:%SZ')
 USAGE="Helm Client"
 
-source ${DIR}/x509.env
+if [[ ! -r "${DIR}/x509.env" ]] ; then 
+  cp -f "${DIR}/x509.env.tmpl" "${DIR}/x509.env"
+  echo "Please edit '${DIR}/x509.env' and re-run this script"
+  exit 1
+fi
+
+source "${DIR}/x509.env"
 
 HELMDIR="${DIR}/pki/helm/${DATE}"
 mkdir -p "${HELMDIR}/private"
