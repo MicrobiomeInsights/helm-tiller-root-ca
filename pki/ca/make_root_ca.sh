@@ -35,3 +35,21 @@ openssl ca -config openssl.cnf -extensions v3_intermediate_ca \
       -in intermediate/csr/intermediate.csr.pem \
       -out intermediate/certs/intermediate.cert.pem
 
+
+# Verify - look for OK
+openssl verify -CAfile certs/ca.cert.pem \
+      intermediate/certs/intermediate.cert.pem
+
+
+## 
+## Create the CA chain file
+##
+
+cat intermediate/certs/intermediate.cert.pem \
+      certs/ca.cert.pem > intermediate/certs/ca-chain.cert.pem
+chmod 444 intermediate/certs/ca-chain.cert.pem
+
+## at this point the additional client and server 
+## certificates can be created, signed by the intermediate CA
+##
+## See make-helm-client-cert.sh and make-tiller-server-cert.sh
