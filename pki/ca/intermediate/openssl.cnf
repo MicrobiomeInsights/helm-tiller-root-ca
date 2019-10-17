@@ -80,12 +80,12 @@ emailAddress_max	        	= 64
 countryName_default             = CA
 stateOrProvinceName_default     = British Columbia
 localityName_default            = Vancouver
-0.organizationName_default      = Hyperion Technology, Inc.
+0.organizationName_default      = Microbiome Insights
 organizationalUnitName_default  = DevOps
-emailAddress_default		    = hyperionex@protonmail.com
+emailAddress_default		= support@microbiomeinsights.com
 
 [ req_attributes ]
-challengePassword		    = A challenge password
+challengePassword		= A challenge password
 challengePassword_min		= 4
 challengePassword_max		= 20
 
