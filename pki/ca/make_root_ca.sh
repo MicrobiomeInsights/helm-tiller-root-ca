@@ -5,8 +5,8 @@
 openssl genrsa -aes256 -out private/ca.key.pem 4096
 chmod 400 private/ca.key.pem
 
-# make the root CA Certificate
-
+# make the root CA Certificate - 20 years
+#
 openssl req -config openssl.cnf \
       -key private/ca.key.pem \
       -new -x509 -days 7300 -sha256 -extensions v3_ca \
@@ -14,4 +14,24 @@ openssl req -config openssl.cnf \
 
 chmod 444 certs/ca.cert.pem
 
+
+##
+## Make the Intermediate CA
+##
+
+openssl genrsa -aes256 \
+      -out intermediate/private/intermediate.key.pem 4096
+
+chmod 400 intermediate/private/intermediate.key.pem
+
+# intermediate CSR
+# openssl req -config intermediate/openssl.cnf -new -sha256 \
+      -key intermediate/private/intermediate.key.pem \
+      -out intermediate/csr/intermediate.csr.pem
+
+# Sign the intermediate CA certificate with the root CA - 10 years
+openssl ca -config openssl.cnf -extensions v3_intermediate_ca \
+      -days 3650 -notext -md sha256 \
+      -in intermediate/csr/intermediate.csr.pem \
+      -out intermediate/certs/intermediate.cert.pem
 
