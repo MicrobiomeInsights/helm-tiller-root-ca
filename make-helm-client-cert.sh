@@ -13,15 +13,11 @@ DAYS=375
 ## after server and client certificates are created, there is now mutual TLS between client and server.
 ##
 
+# DATE and USAGE are used in the x509.env file
 DATE=$(date -u '+%Y-%m-%dT%H:%M:%SZ')
-C="CA"
-ST="British Columbia"
-L="Vancouver"
-O="Hyperion Technology, Inc."
-OU="DevOps"
-CN="Hyperion Technology Inc Helm Client ${DATE//[:-]/}"
-MAIL="hyperionex@protonmail.com"
-SUBJ="/C=$C/ST=$ST/O=$O/OU=$OU/CN=$CN/emailAddress=$MAIL"
+USAGE="Helm Client"
+
+source ${DIR}/x509.env
 
 HELMDIR="${DIR}/pki/helm/${DATE}"
 mkdir -p "${HELMDIR}/private"

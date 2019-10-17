@@ -10,15 +10,11 @@ DAYS=375
 ## Tiller Server
 ##
 
+# DATE and USAGE is used in the x509.env file
 DATE=$(date -u '+%Y-%m-%dT%H:%M:%SZ')
-C="CA"
-ST="British Columbia"
-L="Vancouver"
-O="Hyperion Technology, Inc."
-OU="DevOps"
-CN="Hyperion Technology Inc Tiller Server ${DATE//[:-]/}"
-MAIL="hyperionex@protonmail.com"
-SUBJ="/C=$C/ST=$ST/O=$O/OU=$OU/CN=$CN/emailAddress=$MAIL"
+USAGE="Tiller Server"
+
+source ${DIR}/x509.env
 
 TILLERDIR="${DIR}/pki/tiller/${DATE}"
 mkdir -p "${TILLERDIR}/private"
