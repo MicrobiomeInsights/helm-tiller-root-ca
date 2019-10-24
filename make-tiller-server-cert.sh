@@ -73,6 +73,9 @@ if [[ $ret != 0 ]]; then
     exit 1
 fi 
 
+cd ${TILLERDIR}/..
+ln -snf ${DATE} current
+
 echo
 echo "created: "
 echo "  tls.key: ${TILLER_KEY/$DIR\//./}"

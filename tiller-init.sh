@@ -13,17 +13,11 @@ kubectl create serviceaccount -n ${TILLER_NAMESPACE} ${TILLER_SERVICE_ACCOUNT}
 kubectl create clusterrolebinding tiller-cluster-admin --clusterrole=cluster-admin --serviceaccount="${TILLER_NAMESPACE}:${TILLER_SERVICE_ACCOUNT}"
 
 
-## 
-## EXIT.  This is not working with the new pki layout yet
-##
-
-exit 0 
-
 CA_CERT=pki/ca/intermediate/certs/ca-chain.cert.pem
 
 # need to get the latest server cert 
-TILLER_KEY=pki/tiller/private/tiller.key.pem
-TILLER_CERT=pki/tiller/tiller.cert.pem
+TILLER_KEY=pki/tiller/current/private/tls.key
+TILLER_CERT=pki/tiller/current/tls.crt
 
 
 #helm init --dry-run --debug \
